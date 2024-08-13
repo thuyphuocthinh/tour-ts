@@ -1,0 +1,13 @@
+extends ../../layouts/default.pug 
+include ../../mixins/box-head.pug 
+include ../../mixins/item.pug 
+
+block main
+    .container 
+        .row.mt-3 
+            .col-12 
+                +box-head(pageTitle)
+        .row.mt-3
+            each category in categories
+                .col-lg-3.col-md-6.col-12.mb-3.mt-md-0 
+                    +category-item(category)

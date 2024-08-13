@@ -1,0 +1,61 @@
+extends ../../layouts/default.pug 
+include ../../mixins/box-head.pug 
+include ../../mixins/item.pug 
+include ../../mixins/moment.pug 
+
+block main
+    .container 
+        .row.mt-4
+            .col-md-6.col-12
+                if(tour.images)
+                    .swiper.mySwiper2
+                        .swiper-wrapper
+                            each image in tour.images 
+                                .swiper-slide
+                                    img(src=image, alt=image, class="img-thumbnail", style="width: 100%; height: 100%;")
+                        .swiper-button-next
+                        .swiper-button-prev
+
+                    .swiper.mySwiper
+                        .swiper-wrapper 
+                            each image in tour.images 
+                                .swiper-slide 
+                                    img(src=image, alt=image, class="img-thumbnail", style="width: 100%; height: 100%;")
+
+            .col-md-6.col-12 
+                h3(style="color: red;").fw-bold #{tour.title}
+                .group-info.my-4
+                    p.p-0.mb-2
+                        span.fw-bold Mã tour: 
+                        span #{tour.code}
+                    p.p-0.mb-2
+                        span.fw-bold Lịch khởi hành: 
+                        span 
+                            +formatDateTime(tour.timeStart)
+                    p.p-0.mb-2   
+                        span.fw-bold Còn lại: 
+                        span #{tour.stock}
+                
+                    p.p-0(style="color: red; font-size: 20px;").fw-bold.mb-2   #{tour.price_special.toLocaleString()}
+                    p.p-0(style="text-decoration: line-through").mb-2  #{tour.price.toLocaleString()}
+                    p.p-0.mb-2  
+                        span.fw-bold Giảm tới #{tour.discount} %
+                form(
+                    tour-id="tour-id"
+                    form-add-to-cart
+                )
+                    input(type="number", name="quantity", value="1", min="1", max=tour.stock class="form-control mb-2")
+                    button(type="submit" class="btn btn-success d-block" style="width: 100%;") Thêm vào giỏ hàng 
+
+        .row.mt-4
+            .col-12.mb-3 
+                .card
+                    .card-header.fw-bold(style="color: red;") Thông tin tour 
+                    .card-body !{tour.information}
+
+            .col-12.mb-3
+                .card
+                    .card-header.fw-bold(style="color: red;") Lịch trình tour 
+                    .card-body !{tour.schedule}
+
+    script(src="/clients/js/script.js") 

@@ -1,0 +1,24 @@
+mixin category-item(category)
+    .card.d-block
+        img(src=category.image, class="card-img-top", alt=category.title)
+        .card-body 
+            h6 #{category.title}
+        .card-footer 
+            a(href=`/tours/${category.slug}` class="btn btn-primary") Chi tiết 
+
+
+mixin tour-item(tour)
+    .card.d-block
+        img(src=tour.image, class="card-img-top", alt=tour.title)
+        .card-body 
+            h5 #{tour.title}
+            p.p-0.m-0.d-flex.justify-content-between 
+                span.fw-bold Giá cũ 
+                span(
+                    style="text-decoration: line-through;"
+                ) #{tour.price.toLocaleString()}
+            p.p-0.m-0.d-flex.justify-content-between 
+                span.fw-bold Giá mới 
+                span #{tour.price_special.toLocaleString()}
+        .card-footer 
+            a(href=`/tours/detail/${tour.slug}` class="btn btn-primary") Chi tiết 
