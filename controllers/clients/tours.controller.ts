@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import Tours from "../../models/tours.model";
-import Categories from "../../models/categories.model";
 import sequelize from "../../config/database.config";
 import { QueryTypes } from "sequelize";
 

@@ -1,0 +1,49 @@
+extends ../../layouts/default.pug 
+include ../../mixins/box-head.pug 
+include ../../mixins/item.pug 
+
+block main
+    .container 
+        .row.mt-3 
+            .col-12 
+                +box-head(pageTitle)
+        .row.mt-3
+            table(class="table table-bordered")
+                thead 
+                    tr 
+                        th STT 
+                        th Ảnh 
+                        th Tên 
+                        th Giá
+                        th Số lượng 
+                        th Tổng tiền 
+                        th Hành động 
+                tbody 
+                    each item, index in cart
+                        tr 
+                            td #{index + 1}
+                            td 
+                                img(
+                                    src=item.image
+                                    style="width: 100px;"
+                                )
+                            td 
+                                a(href=`/cart/detail/${item.slug}`) #{item.title}
+                            td 
+                                #{item.price_special}
+                            td 
+                                input(
+                                    type="number" 
+                                    name="quantity"
+                                    value=item.quantity 
+                                    min="1"
+                                    product-id=item.id
+                                    class="form-control"
+                                )
+                            td 
+                                #{item.totalPrice}
+                            td 
+                                a(
+                                    href=`/cart/delete/${item.product_id}`
+                                    class="btn btn-danger"
+                                ) Xóa

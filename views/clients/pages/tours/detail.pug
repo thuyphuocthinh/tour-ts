@@ -41,7 +41,7 @@ block main
                     p.p-0.mb-2  
                         span.fw-bold Giảm tới #{tour.discount} %
                 form(
-                    tour-id="tour-id"
+                    tour-id=tour.id
                     form-add-to-cart
                 )
                     input(type="number", name="quantity", value="1", min="1", max=tour.stock class="form-control mb-2")
@@ -58,4 +58,3 @@ block main
                     .card-header.fw-bold(style="color: red;") Lịch trình tour 
                     .card-body !{tour.schedule}
 
-    script(src="/clients/js/script.js") 
